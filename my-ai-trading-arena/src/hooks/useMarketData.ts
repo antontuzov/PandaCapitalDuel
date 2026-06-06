@@ -52,6 +52,7 @@ export function useMarketData(): UseMarketDataReturn {
     qwen: [],
     yi: [],
     doubao: [],
+    minimax: [],
   });
   const [recentTrades, setRecentTrades] = useState<Trade[]>([]);
   const [latencyData, setLatencyData] = useState<LatencyData[]>([]);

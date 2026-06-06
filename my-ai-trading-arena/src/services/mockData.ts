@@ -27,6 +27,7 @@ const modelEquity: Record<ModelId, number> = {
   qwen: STARTING_CAPITAL,
   yi: STARTING_CAPITAL,
   doubao: STARTING_CAPITAL,
+  minimax: STARTING_CAPITAL,
 };
 
 /** Simulate price movement with random walk */
@@ -40,7 +41,7 @@ function simulatePrice(symbol: string): number {
 
 /** Generate realistic ticker data for all trading pairs */
 export function generateTickerData(): TickerData[] {
-  const pairs: TradingPair[] = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT'];
+  const pairs: TradingPair[] = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT', 'TONUSDT', 'ADAUSDT', 'AVAXUSDT', 'DOTUSDT', 'LINKUSDT'];
   return pairs.map((symbol) => {
     const price = simulatePrice(symbol);
     const basePrice = BASE_PRICES[symbol];
@@ -62,7 +63,7 @@ export function generateTickerData(): TickerData[] {
 /** Generate simulated positions for a model */
 export function generatePositions(modelId: ModelId): Position[] {
   const numPositions = Math.floor(Math.random() * 3) + 1;
-  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'BNBUSDT'];
+  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'BNBUSDT', 'TONUSDT'];
   const positions: Position[] = [];
 
   for (let i = 0; i < numPositions; i++) {
@@ -93,7 +94,7 @@ export function generatePositions(modelId: ModelId): Position[] {
 
 /** Generate a simulated trade */
 export function generateTrade(modelId: ModelId): Trade {
-  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT'];
+  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT', 'TONUSDT', 'ADAUSDT'];
   const symbol = pairs[Math.floor(Math.random() * pairs.length)];
   const price = currentPrices[symbol] || BASE_PRICES[symbol];
   const side: 'buy' | 'sell' = Math.random() > 0.5 ? 'buy' : 'sell';
@@ -200,6 +201,13 @@ const REASONING_TEMPLATES: Record<ModelId, string[]> = {
     'Fear & Greed index at 15 (Extreme Fear) while on-chain whale accumulation accelerating. Contrarian long BTC signal with high conviction.',
     'Meme coin mania detected on social feeds — DOGE and PEPE trending. Sentiment extreme reached. Taking profit on meme positions and rotating to ETH.',
   ],
+  minimax: [
+    'Multi-step analysis complete: BTC showing bullish divergence on 4H RSI while volume profile suggests accumulation zone. Entering long with 15x.',
+    'Reasoning chain: TON ecosystem growing rapidly + TVL surging 40% this week. Strong fundamental backdrop supports a long position at current levels.',
+    'Cross-referencing technical and fundamental data: AVAX forming inverse H&S on daily while subnet adoption accelerating. High conviction long.',
+    'Market structure analysis: SOL breaking above key resistance with strong volume confirmation. Setting tight trailing stop at 1.5%.',
+    'Adaptive execution: volatility regime shifted to low. Reducing position sizes and tightening stops. Waiting for clearer signal before next entry.',
+  ],
 };
 
 /** Generate AI reasoning log entry */
@@ -213,7 +221,7 @@ export function generateAIReasoning(modelId: ModelId): AIReasoningEntry {
     timestamp: Date.now(),
     text,
     tradeAction: {
-      symbol: ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'BNBUSDT'][Math.floor(Math.random() * 4)],
+      symbol: ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'BNBUSDT', 'TONUSDT'][Math.floor(Math.random() * 5)],
       side: Math.random() > 0.5 ? 'buy' : 'sell',
       quantity: Math.random() * 2 + 0.1,
     },
@@ -233,6 +241,7 @@ export function generateEquityCurve(): EquityDataPoint[] {
     qwen: STARTING_CAPITAL,
     yi: STARTING_CAPITAL,
     doubao: STARTING_CAPITAL,
+    minimax: STARTING_CAPITAL,
   };
 
   for (let i = hours; i >= 0; i--) {

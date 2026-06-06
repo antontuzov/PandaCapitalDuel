@@ -86,14 +86,14 @@ export default function Dashboard() {
             {activeTab === 'leaderboard' && (
               <>
                 {/* Leaderboard + Latency (side by side on large screens) */}
-                <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 xl:grid-cols-5 gap-4 md:gap-6">
                   <div className="xl:col-span-3">
                     <Card title="Leaderboard">
                       <Leaderboard performance={modelPerformance} />
                     </Card>
                   </div>
-                  <div className="xl:col-span-1">
-                    <Card title="Latency Monitor" compact>
+                  <div className="xl:col-span-2">
+                    <Card title="Latency Monitor">
                       <LatencyMonitor data={latencyData} />
                     </Card>
                   </div>
@@ -161,7 +161,7 @@ export default function Dashboard() {
                   <div>
                     <h4 className="text-sm font-bold text-text-primary mb-2">Connected AI Models</h4>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {['Kimi', 'DeepSeek', 'Mimo', 'Qwen', 'Yi', 'Doubao'].map((model) => (
+                      {['Kimi', 'DeepSeek', 'Mimo', 'Qwen', 'Yi', 'Doubao', 'MiniMax'].map((model) => (
                         <div key={model} className="p-3 rounded-lg border border-border-primary bg-bg-tertiary">
                           <div className="text-sm font-bold text-text-primary">{model}</div>
                           <div className="text-xs text-green-500 font-mono mt-1">● Active</div>

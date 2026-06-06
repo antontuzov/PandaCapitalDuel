@@ -2,8 +2,8 @@
  * AI Model types and trading-related interfaces
  */
 
-/** Model identifier — 6 Chinese AI models */
-export type ModelId = 'kimi' | 'deepseek' | 'mimo' | 'qwen' | 'yi' | 'doubao';
+/** Model identifier — 7 Chinese AI models */
+export type ModelId = 'kimi' | 'deepseek' | 'mimo' | 'qwen' | 'yi' | 'doubao' | 'minimax';
 
 /** Model status */
 export type ModelStatus = 'active' | 'error' | 'stopped';

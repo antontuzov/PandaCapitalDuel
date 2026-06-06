@@ -2,7 +2,7 @@
  * Leaderboard — live leaderboard table of all AI models
  */
 
-import { Trophy } from 'lucide-react';
+import { Trophy, Medal } from 'lucide-react';
 import { cn, formatUSD, formatPercent } from '../../lib/utils';
 import { Sparkline } from '../charts/Sparkline';
 import { getModelProfile } from '../../lib/constants';
@@ -12,10 +12,10 @@ interface LeaderboardProps {
   performance: ModelPerformance[];
 }
 
-const rankColors: Record<number, string> = {
-  1: 'text-yellow-500', // Gold
-  2: 'text-gray-400',   // Silver
-  3: 'text-amber-600',  // Bronze
+const rankConfig: Record<number, { color: string; icon: 'trophy' | 'medal' }> = {
+  1: { color: 'text-yellow-500', icon: 'trophy' },   // Gold
+  2: { color: 'text-gray-400', icon: 'medal' },       // Silver
+  3: { color: 'text-amber-600', icon: 'medal' },      // Bronze
 };
 
 export function Leaderboard({ performance }: LeaderboardProps) {
@@ -60,8 +60,10 @@ export function Leaderboard({ performance }: LeaderboardProps) {
                 {/* Rank */}
                 <td className="py-3 px-3">
                   <div className="flex items-center gap-1">
-                    {isTopRank && <Trophy className={cn('w-4 h-4', rankColors[perf.rank])} />}
-                    <span className={cn('font-mono font-bold text-sm', rankColors[perf.rank] || 'text-text-muted')}>
+                    {perf.rank === 1 && <Trophy className={cn('w-4 h-4', rankConfig[perf.rank]?.color)} />}
+                    {perf.rank === 2 && <Medal className={cn('w-4 h-4', rankConfig[perf.rank]?.color)} />}
+                    {perf.rank === 3 && <Medal className={cn('w-4 h-4', rankConfig[perf.rank]?.color)} />}
+                    <span className={cn('font-mono font-bold text-sm', rankConfig[perf.rank]?.color || 'text-text-muted')}>
                       {perf.rank}
                     </span>
                   </div>

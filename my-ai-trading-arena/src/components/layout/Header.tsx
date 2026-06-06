@@ -4,8 +4,8 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Zap } from 'lucide-react';
 import { ThemeToggle } from '../ui/ThemeToggle';
+import { PandaLogo } from '../ui/PandaLogo';
 import { cn } from '../../lib/utils';
 import type { ConnectionStatus } from '../../types';
 
@@ -48,7 +48,7 @@ export function Header({ connectionStatus }: HeaderProps) {
       {/* Left: Logo and title */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <Zap className="w-6 h-6 text-yellow-500" />
+          <PandaLogo size={28} />
           <span className="text-lg font-bold tracking-tight text-text-primary hidden sm:inline">
             ALPHA <span className="text-blue-500">ARENA</span>
           </span>

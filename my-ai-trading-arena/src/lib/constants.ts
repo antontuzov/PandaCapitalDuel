@@ -8,7 +8,7 @@ import type { ModelProfile, ModelId } from '../types';
 export const STARTING_CAPITAL = 10_000;
 
 /** Supported trading pairs */
-export const TRADING_PAIRS = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT'] as const;
+export const TRADING_PAIRS = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT', 'TONUSDT', 'ADAUSDT', 'AVAXUSDT', 'DOTUSDT', 'LINKUSDT'] as const;
 
 /** Model color map for Tailwind classes */
 export const MODEL_COLORS: Record<ModelId, string> = {
@@ -18,6 +18,7 @@ export const MODEL_COLORS: Record<ModelId, string> = {
   qwen: 'var(--color-qwen)',
   yi: 'var(--color-yi)',
   doubao: 'var(--color-doubao)',
+  minimax: 'var(--color-minimax)',
 };
 
 export const MODEL_BG_CLASSES: Record<ModelId, string> = {
@@ -27,6 +28,7 @@ export const MODEL_BG_CLASSES: Record<ModelId, string> = {
   qwen: 'bg-purple-500',
   yi: 'bg-yellow-500',
   doubao: 'bg-pink-500',
+  minimax: 'bg-cyan-500',
 };
 
 export const MODEL_TEXT_CLASSES: Record<ModelId, string> = {
@@ -36,6 +38,7 @@ export const MODEL_TEXT_CLASSES: Record<ModelId, string> = {
   qwen: 'text-purple-500',
   yi: 'text-yellow-500',
   doubao: 'text-pink-500',
+  minimax: 'text-cyan-500',
 };
 
 export const MODEL_BORDER_CLASSES: Record<ModelId, string> = {
@@ -45,6 +48,7 @@ export const MODEL_BORDER_CLASSES: Record<ModelId, string> = {
   qwen: 'border-purple-500',
   yi: 'border-yellow-500',
   doubao: 'border-pink-500',
+  minimax: 'border-cyan-500',
 };
 
 /** Model profiles with full details */
@@ -121,6 +125,18 @@ export const MODEL_PROFILES: ModelProfile[] = [
     prefers: 'Undervalued assets before narrative catalysts, contrarian reversal plays',
     avoids: 'Chasing already popular trades, ignoring sentiment extremes',
   },
+  {
+    id: 'minimax',
+    name: 'MiniMax',
+    provider: 'MiniMax',
+    color: '#06b6d4',
+    colorClass: 'text-cyan-500',
+    description: 'Versatile reasoning model combining analytical depth with adaptive execution. Excels at multi-step planning across various market conditions.',
+    personality: 'Adaptive Reasoning Executor',
+    characteristics: ['Performs multi-step reasoning before each trade', 'Adapts execution style to current volatility regime', 'Balances analysis depth with execution speed'],
+    prefers: 'Well-researched setups with clear risk/reward, trending markets',
+    avoids: 'Impulsive entries without analysis, over-leveraging on low-conviction trades',
+  },
 ];
 
 /** Get model profile by ID */
@@ -147,4 +163,9 @@ export const BASE_PRICES: Record<string, number> = {
   SOLUSDT: 175,
   DOGEUSDT: 0.155,
   BNBUSDT: 612,
+  TONUSDT: 7.25,
+  ADAUSDT: 0.48,
+  AVAXUSDT: 38.5,
+  DOTUSDT: 7.85,
+  LINKUSDT: 14.2,
 };
