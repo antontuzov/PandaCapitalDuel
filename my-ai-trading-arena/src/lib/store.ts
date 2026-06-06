@@ -19,9 +19,9 @@ interface AppState {
   removeToast: (id: string) => void;
 
   /** Active navigation tab */
-  activeTab: 'leaderboard' | 'trades' | 'settings';
+  activeTab: 'leaderboard' | 'trades' | 'prompts' | 'settings';
   /** Set active tab */
-  setActiveTab: (tab: 'leaderboard' | 'trades' | 'settings') => void;
+  setActiveTab: (tab: 'leaderboard' | 'trades' | 'prompts' | 'settings') => void;
 
   /** Sidebar collapsed state */
   sidebarCollapsed: boolean;

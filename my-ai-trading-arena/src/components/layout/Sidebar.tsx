@@ -2,13 +2,14 @@
  * Sidebar — left navigation panel
  */
 
-import { Trophy, FileText, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Trophy, FileText, Settings, MessageSquare, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useAppStore } from '../../lib/store';
 
 const navItems = [
   { id: 'leaderboard' as const, label: 'Leaderboard', icon: Trophy },
   { id: 'trades' as const, label: 'Trade Log', icon: FileText },
+  { id: 'prompts' as const, label: 'Prompts', icon: MessageSquare },
   { id: 'settings' as const, label: 'Settings', icon: Settings },
 ];
 

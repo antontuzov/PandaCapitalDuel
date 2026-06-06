@@ -5,7 +5,7 @@
 import type { Position, Trade, ModelPnLUpdate } from './model.types';
 
 /** Supported trading pairs */
-export type TradingPair = 'BTCUSDT' | 'ETHUSDT' | 'SOLUSDT' | 'DOGEUSDT' | 'XRPUSDT';
+export type TradingPair = 'BTCUSDT' | 'ETHUSDT' | 'SOLUSDT' | 'DOGEUSDT' | 'BNBUSDT';
 
 /** Real-time price ticker data */
 export interface TickerData {

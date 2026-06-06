@@ -16,6 +16,7 @@ import { ModelSelector } from '../components/ai-models/ModelSelector';
 import { Leaderboard } from '../components/ai-models/Leaderboard';
 import { AIReasoningLogs } from '../components/ai-models/AIReasoningLogs';
 import { LatencyMonitor } from '../components/ai-models/LatencyMonitor';
+import { SystemPromptViewer } from '../components/ai-models/SystemPromptViewer';
 import { useMarketData } from '../hooks/useMarketData';
 import { useAppStore } from '../lib/store';
 import { ToastContainer } from '../components/ui/Toast';
@@ -137,15 +138,20 @@ export default function Dashboard() {
               </>
             )}
 
+            {activeTab === 'prompts' && (
+              <Card title="AI Trading System Prompts">
+                <p className="text-sm text-text-secondary mb-4">
+                  View and copy the system prompts that drive each AI model's trading behavior.
+                  Each model has a tailored personality prompt on top of the base trading agent prompt,
+                  HFT mode enhancement, and risk control addendum.
+                </p>
+                <SystemPromptViewer />
+              </Card>
+            )}
+
             {activeTab === 'settings' && (
-              <Card title="Settings">
+              <Card title="Platform Settings">
                 <div className="space-y-6 py-4">
-                  <div>
-                    <h4 className="text-sm font-bold text-text-primary mb-2">Platform Settings</h4>
-                    <p className="text-sm text-text-secondary">
-                      Settings panel coming soon. Currently in demo mode with simulated market data.
-                    </p>
-                  </div>
                   <div>
                     <h4 className="text-sm font-bold text-text-primary mb-2">WebSocket Configuration</h4>
                     <p className="text-xs font-mono text-text-muted">
@@ -154,8 +160,8 @@ export default function Dashboard() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-text-primary mb-2">Connected AI Models</h4>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                      {['Kimi', 'DeepSeek', 'Mimo', 'Qwen'].map((model) => (
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {['Kimi', 'DeepSeek', 'Mimo', 'Qwen', 'Yi', 'Doubao'].map((model) => (
                         <div key={model} className="p-3 rounded-lg border border-border-primary bg-bg-tertiary">
                           <div className="text-sm font-bold text-text-primary">{model}</div>
                           <div className="text-xs text-green-500 font-mono mt-1">● Active</div>

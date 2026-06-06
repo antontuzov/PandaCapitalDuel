@@ -25,6 +25,8 @@ const modelEquity: Record<ModelId, number> = {
   deepseek: STARTING_CAPITAL,
   mimo: STARTING_CAPITAL,
   qwen: STARTING_CAPITAL,
+  yi: STARTING_CAPITAL,
+  doubao: STARTING_CAPITAL,
 };
 
 /** Simulate price movement with random walk */
@@ -38,7 +40,7 @@ function simulatePrice(symbol: string): number {
 
 /** Generate realistic ticker data for all trading pairs */
 export function generateTickerData(): TickerData[] {
-  const pairs: TradingPair[] = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'XRPUSDT'];
+  const pairs: TradingPair[] = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT'];
   return pairs.map((symbol) => {
     const price = simulatePrice(symbol);
     const basePrice = BASE_PRICES[symbol];
@@ -60,7 +62,7 @@ export function generateTickerData(): TickerData[] {
 /** Generate simulated positions for a model */
 export function generatePositions(modelId: ModelId): Position[] {
   const numPositions = Math.floor(Math.random() * 3) + 1;
-  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT'];
+  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'BNBUSDT'];
   const positions: Position[] = [];
 
   for (let i = 0; i < numPositions; i++) {
@@ -91,7 +93,7 @@ export function generatePositions(modelId: ModelId): Position[] {
 
 /** Generate a simulated trade */
 export function generateTrade(modelId: ModelId): Trade {
-  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'XRPUSDT'];
+  const pairs = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'DOGEUSDT', 'BNBUSDT'];
   const symbol = pairs[Math.floor(Math.random() * pairs.length)];
   const price = currentPrices[symbol] || BASE_PRICES[symbol];
   const side: 'buy' | 'sell' = Math.random() > 0.5 ? 'buy' : 'sell';
@@ -184,6 +186,20 @@ const REASONING_TEMPLATES: Record<ModelId, string[]> = {
     'Analyzing whale wallet movements on-chain. Large BTC accumulation detected. Bullish signal for near-term price action.',
     'Combining technical indicators with macro data. CPI release tomorrow may create volatility. Positioning for upside surprise.',
   ],
+  yi: [
+    'Regime detection: market has shifted from ranging to trending on BTC. Switching to momentum breakout strategy. Scaling into SOL long.',
+    'Volatility regime identified as high-expansion. Mean-reversion strategy deactivated. Entering BNB breakout at resistance with 15x leverage.',
+    'Cross-asset correlation analysis shows ETH undervalued vs BTC ratio. Regime-adaptive model signals mean-reversion entry. Tight stop at 2%.',
+    'Market transitioning from downtrend to accumulation phase. Strategy switch: breakout mode active. Building DOGE position ahead of range expansion.',
+    'Multi-timeframe regime analysis: 4H trending up, 1H consolidating. Waiting for 1H breakout confirmation before adding to BTC long.',
+  ],
+  doubao: [
+    'Social sentiment spike detected: SOL mentions up 340% on CT in last 2 hours. Contrarian signal — this trade is overcrowded. Going short SOL.',
+    'News sentiment analysis: Fed Chair comments more dovish than expected. Front-running the risk-on move. Buying ETH with 18x leverage.',
+    'Narrative shift detected: DeFi summer 2.0 narrative building around BNB chain. Positioning early with a long before the herd arrives.',
+    'Fear & Greed index at 15 (Extreme Fear) while on-chain whale accumulation accelerating. Contrarian long BTC signal with high conviction.',
+    'Meme coin mania detected on social feeds — DOGE and PEPE trending. Sentiment extreme reached. Taking profit on meme positions and rotating to ETH.',
+  ],
 };
 
 /** Generate AI reasoning log entry */
@@ -197,7 +213,7 @@ export function generateAIReasoning(modelId: ModelId): AIReasoningEntry {
     timestamp: Date.now(),
     text,
     tradeAction: {
-      symbol: ['BTCUSDT', 'ETHUSDT', 'SOLUSDT'][Math.floor(Math.random() * 3)],
+      symbol: ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 'BNBUSDT'][Math.floor(Math.random() * 4)],
       side: Math.random() > 0.5 ? 'buy' : 'sell',
       quantity: Math.random() * 2 + 0.1,
     },
@@ -215,6 +231,8 @@ export function generateEquityCurve(): EquityDataPoint[] {
     deepseek: STARTING_CAPITAL,
     mimo: STARTING_CAPITAL,
     qwen: STARTING_CAPITAL,
+    yi: STARTING_CAPITAL,
+    doubao: STARTING_CAPITAL,
   };
 
   for (let i = hours; i >= 0; i--) {
@@ -231,10 +249,7 @@ export function generateEquityCurve(): EquityDataPoint[] {
 
     points.push({
       time,
-      kimi: equityTracks.kimi,
-      deepseek: equityTracks.deepseek,
-      mimo: equityTracks.mimo,
-      qwen: equityTracks.qwen,
+      ...equityTracks,
     });
   }
 

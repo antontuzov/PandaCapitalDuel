@@ -2,8 +2,8 @@
  * AI Model types and trading-related interfaces
  */
 
-/** Model identifier */
-export type ModelId = 'kimi' | 'deepseek' | 'mimo' | 'qwen';
+/** Model identifier — 6 Chinese AI models */
+export type ModelId = 'kimi' | 'deepseek' | 'mimo' | 'qwen' | 'yi' | 'doubao';
 
 /** Model status */
 export type ModelStatus = 'active' | 'error' | 'stopped';
@@ -16,6 +16,14 @@ export interface ModelProfile {
   color: string;
   colorClass: string;
   description: string;
+  /** Trading personality / strategy style */
+  personality: string;
+  /** Key behavioral characteristics */
+  characteristics: string[];
+  /** What this model prefers to trade */
+  prefers: string;
+  /** What this model avoids */
+  avoids: string;
   logoUrl?: string;
 }
 
@@ -92,10 +100,7 @@ export interface AIReasoningEntry {
 /** Equity curve data point */
 export interface EquityDataPoint {
   time: string;
-  kimi: number;
-  deepseek: number;
-  mimo: number;
-  qwen: number;
+  [key: string]: number | string;
 }
 
 /** Order form data */

@@ -107,7 +107,7 @@ class WebSocketService {
 
       // Occasionally update model equity
       if (Math.random() > 0.5) {
-        const models: ModelId[] = ['kimi', 'deepseek', 'mimo', 'qwen'];
+        const models: ModelId[] = ['kimi', 'deepseek', 'mimo', 'qwen', 'yi', 'doubao'];
         const model = models[Math.floor(Math.random() * models.length)];
         const delta = (Math.random() - 0.48) * 50;
         updateModelEquity(model, delta);

@@ -96,7 +96,7 @@ export default function Landing() {
           {/* Stats bar */}
           <div className="flex items-center justify-center gap-8 md:gap-16 mt-16 font-mono">
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-500">4</div>
+              <div className="text-3xl font-bold text-blue-500">6</div>
               <div className="text-xs text-text-muted mt-1">AI MODELS</div>
             </div>
             <div className="text-center">
@@ -132,7 +132,7 @@ export default function Landing() {
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-4 text-text-secondary leading-relaxed">
               <p>
-                Alpha Arena is a live experiment where four state-of-the-art Chinese AI models
+                Alpha Arena is a live experiment where six state-of-the-art Chinese AI models
                 trade cryptocurrency with real capital. Each model receives $10,000 in starting
                 capital and operates autonomously, making all trading decisions independently.
               </p>
@@ -151,13 +151,13 @@ export default function Landing() {
             <div className="rounded-xl border border-border-primary bg-bg-card p-6 font-mono text-sm space-y-3">
               <div className="text-green-500 font-bold">$ arena --status</div>
               <div className="text-text-muted">
-                <span className="text-text-secondary">Models Active:</span> 4/4
+                <span className="text-text-secondary">Models Active:</span> 6/6
               </div>
               <div className="text-text-muted">
                 <span className="text-text-secondary">Market:</span> Cryptocurrency (Binance)
               </div>
               <div className="text-text-muted">
-                <span className="text-text-secondary">Pairs:</span> BTC/USDT, ETH/USDT, SOL/USDT...
+                <span className="text-text-secondary">Pairs:</span> BTC/USDT, ETH/USDT, SOL/USDT, DOGE/USDT, BNB/USDT
               </div>
               <div className="text-text-muted">
                 <span className="text-text-secondary">Strategy:</span> High-Frequency Trading
@@ -211,6 +211,9 @@ export default function Landing() {
                       <span className="text-xs text-text-muted font-mono px-2 py-0.5 rounded bg-bg-tertiary">
                         {model.provider}
                       </span>
+                    </div>
+                    <div className="text-xs font-mono font-bold mb-2" style={{ color: model.color }}>
+                      {model.personality}
                     </div>
                     <p className="text-sm text-text-secondary leading-relaxed">
                       {model.description}
