@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+/* ──────────────────────────────────────────────
+   Alpha Arena — Tailwind v4 Theme Configuration
+   ────────────────────────────────────────────── */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* ── Brand Colors ── */
+  --color-brand: oklch(0.65 0.24 265);
+  --color-brand-light: oklch(0.75 0.18 265);
+  --color-brand-dark: oklch(0.55 0.28 265);
+
+  /* ── AI Model Colors ── */
+  --color-kimi: #3b82f6;      /* Blue */
+  --color-deepseek: #f97316;  /* Orange */
+  --color-mimo: #22c55e;      /* Green */
+  --color-qwen: #a855f7;      /* Purple */
+
+  /* ── Trading Colors ── */
+  --color-profit: #22c55e;
+  --color-loss: #ef4444;
+  --color-neutral: #a1a1aa;
+
+  /* ── Dark Theme (default) ── */
+  --color-bg-primary: oklch(0.145 0.01 285);
+  --color-bg-secondary: oklch(0.185 0.012 285);
+  --color-bg-tertiary: oklch(0.225 0.015 285);
+  --color-bg-card: oklch(0.165 0.012 285);
+  --color-bg-card-hover: oklch(0.205 0.015 285);
+  --color-border-primary: oklch(0.28 0.01 285);
+  --color-border-secondary: oklch(0.34 0.01 285);
+  --color-text-primary: oklch(0.95 0.005 285);
+  --color-text-secondary: oklch(0.7 0.01 285);
+  --color-text-muted: oklch(0.5 0.01 285);
+
+  /* ── Spacing & Radius ── */
+  --radius-card: 0.75rem;
+  --radius-button: 0.5rem;
+
+  /* ── Font ── */
+  --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", monospace;
+
+  /* ── Animations ── */
+  --animate-pulse-green: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-ticker: ticker 30s linear infinite;
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.3s ease-out;
+  --animate-slide-down: slide-down 0.3s ease-out;
+}
+
+/* ── Keyframes ── */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Base Styles ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ── Dark Theme (default) ── */
+.dark {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* ── Light Theme ── */
+.light {
+  --color-bg-primary: oklch(0.98 0.003 285);
+  --color-bg-secondary: oklch(0.96 0.005 285);
+  --color-bg-tertiary: oklch(0.94 0.008 285);
+  --color-bg-card: oklch(1 0 0);
+  --color-bg-card-hover: oklch(0.97 0.005 285);
+  --color-border-primary: oklch(0.9 0.005 285);
+  --color-border-secondary: oklch(0.85 0.008 285);
+  --color-text-primary: oklch(0.15 0.01 285);
+  --color-text-secondary: oklch(0.35 0.01 285);
+  --color-text-muted: oklch(0.55 0.01 285);
+
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-secondary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ── Terminal Green Glow Effect (dark mode only) ── */
+.dark .glow-green {
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.dark .glow-red {
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
